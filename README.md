@@ -17,8 +17,9 @@ import camelcaseKeys from 'camelcase-keys-all-env'
 ```
 
 ### CommonJS modules
+- note the **.default** in the require statement
 ```js
-var camelcaseKeys = require('camelcase-keys-all-env')
+var camelcaseKeys = require('camelcase-keys-all-env').default
 ```
 
 ```js
