@@ -1,15 +1,15 @@
 {
   "name": "camelcase-keys-all-env",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Deeply camelCases object keys, works on all environments where at least ES5 is available (IE9+), using UMD. Tiny in size, has no dependencies.",
-  "main": "dist/index.js",
+  "main": "dist/camelcaseKeys.min.js",
   "author": "Pavel Pichrt",
   "repository": "pavelpichrt/camelcase-keys-all-env",
   "license": "MIT",
   "scripts": {
-    "buildNode": "babel src -d dist",
-    "buildUMD": "babel src -d dist/umd --presets=es2015,minify --plugins=transform-es2015-modules-umd",
-    "build": "yarn buildNode && yarn buildUMD",
+    "buildUMD": "babel src -o dist/camelcaseKeys.js --presets=es2015 --plugins=transform-es2015-modules-umd",
+    "build": "yarn buildUMD && yarn uglify",
+    "uglify": "./node_modules/.bin/uglifyjs -c -m -o dist/camelcaseKeys.min.js -- dist/camelcaseKeys.js",
     "lint": "./node_modules/.bin/eslint src/**/*.js",
     "codestyle": "./node_modules/.bin/prettier --write '{,{src,test}/**/}*.js'",
     "prepublish": "yarn codestyle && yarn test && yarn build",
@@ -25,7 +25,8 @@
     "eslint": "^4.9.0",
     "eslint-config-prettier": "^2.6.0",
     "eslint-plugin-prettier": "^2.3.1",
-    "prettier": "^1.7.4"
+    "prettier": "^1.7.4",
+    "uglify-js": "^3.1.5"
   },
   "ava": {
     "files": [

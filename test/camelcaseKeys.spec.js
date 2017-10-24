@@ -1,5 +1,5 @@
 import test from 'ava'
-import cc from '../src'
+import cc from '../src/camelcaseKeys'
 
 test('It should camelcase the flat object keys correctly', t => {
     const objStub = {
