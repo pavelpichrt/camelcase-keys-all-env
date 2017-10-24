@@ -2,12 +2,12 @@
 > Deeply camelCases object keys.
 
 - Works on all environments where at least ES5 is available (IE9+).
-- Works with snake_case, spinal-case (kebab-case) and PascalCase keys
+- Works with snake_case, kebab-case (spinal-case) and PascalCase keys
 - Supports Arrays and nested objects
 - No dependencies
 - Browser friendly
     - Tiny in size (<1kB minified)
-    - A minified UMD version included (./dist/umd/index.js)
+    - A minified version included (./dist/camelcase-keys.min.js)
 
 ## Usage
 
@@ -21,6 +21,9 @@ import camelcaseKeys from 'camelcase-keys-all-env'
 ```js
 var camelcaseKeys = require('camelcase-keys-all-env').default
 ```
+
+### Other environments
+> I recommend bundling this package with your application, using Webpack / Browserify /... If you can't / don't want to, you can append it to the "global" context (in case of a browser, it will probably be the Window object)
 
 ```js
 // Test object
@@ -45,11 +48,27 @@ const objStub = {
 const camelcaseObj = camelcaseKeys(objStub)
 ```
 
+#### Browser
+- download the minified version of the package from ./dist/camelcase-keys.min.js
+- Upload it to your server / CDN
+- Add a script element to your page
+```html
+<!-- ... -->
+    <!-- use the async / defer attribute to load the script asynchronously, if you can -->
+    <script src="https://somedomain-or-local-path/camelcase-keys.min.js"></script>
+    <script>
+        var camelcaseKeys = Window.camelcaseKeys.default // note: ".default"
+
+        camelcaseKeys({'a_b_c-d': 4}) // { aBCD: 4 }
+    </script>
+<!-- ... -->
+```
+
 ## Setup
 
 ### Yarn
 ```bash
-$ yarn install camelcase-keys-all-env
+$ yarn add camelcase-keys-all-env
 ```
 
 ### NPM
