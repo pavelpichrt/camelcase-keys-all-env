@@ -76,9 +76,6 @@ $ yarn add camelcase-keys-all-env
 $ npm install --save camelcase-keys-all-env
 ```
 
-### Other
-- There's a minified UMD version available in `./dist/umd/index.js`
-
 ## Scripts
 
 ### Build
