@@ -22,9 +22,6 @@ import camelcaseKeys from 'camelcase-keys-all-env'
 var camelcaseKeys = require('camelcase-keys-all-env').default
 ```
 
-### Other environments
-> I recommend bundling this package with your application, using Webpack / Browserify /... If you can't / don't want to, you can append it to the "global" context (in case of a browser, it will probably be the Window object)
-
 ```js
 // Test object
 const objStub = {
@@ -47,6 +44,9 @@ const objStub = {
 
 const camelcaseObj = camelcaseKeys(objStub)
 ```
+
+### Other environments
+> I recommend bundling this package with your application, using Webpack / Browserify /... If you can't / don't want to, you can append it to the "global" context (in case of a browser, it will probably be the Window object)
 
 #### Browser
 - download the minified version of the package from ./dist/camelcase-keys.min.js
