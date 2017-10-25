@@ -1,6 +1,6 @@
 {
   "name": "camelcase-keys-all-env",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Deeply camelCases object keys, works on all environments where at least ES5 is available (IE9+), using UMD. Tiny in size, has no dependencies.",
   "main": "dist/camelcase-keys.min.js",
   "author": "Pavel Pichrt",

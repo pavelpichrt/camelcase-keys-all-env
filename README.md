@@ -46,7 +46,7 @@ const camelcaseObj = camelcaseKeys(objStub)
 ```
 
 ### Other environments
-> I recommend bundling this package with your application, using Webpack / Browserify /... If you can't / don't want to, you can append it to the "global" context (in case of a browser, it will probably be the Window object)
+> I recommend bundling this package with your application, using Webpack / Browserify /... If you can't / don't want to, you can append it to the "global" context (in case of a browser, it will probably be the `window` object)
 
 #### Browser
 - download the minified version of the package from ./dist/camelcase-keys.min.js
@@ -57,7 +57,7 @@ const camelcaseObj = camelcaseKeys(objStub)
     <!-- use the async / defer attribute to load the script asynchronously, if you can -->
     <script src="https://somedomain-or-local-path/camelcase-keys.min.js"></script>
     <script>
-        var camelcaseKeys = Window.camelcaseKeys.default // note: ".default"
+        var camelcaseKeys = window.camelcaseKeys.default // note: ".default"
 
         camelcaseKeys({'a_b_c-d': 4}) // { aBCD: 4 }
     </script>
