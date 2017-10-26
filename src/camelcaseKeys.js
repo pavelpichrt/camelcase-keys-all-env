@@ -1,28 +1,38 @@
 const isObject = obj => typeof obj === 'object' && obj !== null
 
-export default function camelCaseKeys(obj) {
-    if (!isObject(obj)) {
+let cache = {}
+
+const camelCaseKeys = obj => {
+    if (!obj || !isObject(obj)) {
         return obj
     }
 
     let parsedObj = {}
+    let camelCaseKey
 
     if (Array.isArray(obj)) {
         return obj.map(item => camelCaseKeys(item))
     }
 
-    Object.keys(obj).forEach(key => {
-        let camelCaseKey = key.replace(/([\-_]\w)/g, matches => matches[1].toUpperCase())
+    for (const key in obj) {
         let val = obj[key]
 
-        camelCaseKey = camelCaseKey[0].toLowerCase() + camelCaseKey.slice(1)
+        if (cache[key]) {
+            camelCaseKey = cache[key]
+        } else {
+            camelCaseKey = key.replace(/([\-_]\w)/g, matches => matches[1].toUpperCase())
+            camelCaseKey = camelCaseKey[0].toLowerCase() + camelCaseKey.slice(1)
+            cache[key] = camelCaseKey
+        }
 
         if (isObject(val)) {
             val = camelCaseKeys(val)
         }
 
         parsedObj[camelCaseKey] = val
-    })
+    }
 
     return parsedObj
 }
+
+export default camelCaseKeys
