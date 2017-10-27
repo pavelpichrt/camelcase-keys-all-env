@@ -27,37 +27,65 @@
         return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj !== null;
     };
 
-    var camelCaseKeys = function camelCaseKeys(obj) {
-        var cache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    function Cache(maxSize) {
+        this._noOfKeys = 0;
+        this._maxSize = maxSize;
+        this._vals = {};
+    }
 
+    Cache.prototype.set = function (key, val) {
+        if (!this._vals[key]) {
+            this._vals[key] = val;
+            this._noOfKeys++;
+
+            if (this._noOfKeys > this._maxSize) {
+                this.clear();
+            }
+        }
+    };
+
+    Cache.prototype.setSize = function (size) {
+        this._maxSize = size;
+    };
+
+    Cache.prototype.get = function (key) {
+        return this._vals[key];
+    };
+
+    Cache.prototype.clear = function (key) {
+        this._vals = {};
+        this._noOfKeys = 0;
+    };
+
+    var cache = new Cache(1000);
+
+    var camelCaseKeys = function camelCaseKeys(obj) {
         if (!obj || !isObject(obj)) {
             return obj;
         }
 
         var parsedObj = {};
-        var camelCaseKey = void 0;
 
         if (Array.isArray(obj)) {
             return obj.map(function (item) {
-                return camelCaseKeys(item, cache);
+                return camelCaseKeys(item);
             });
         }
 
         for (var key in obj) {
+            var camelCaseKey = cache.get(key);
             var val = obj[key];
 
-            if (cache[key]) {
-                camelCaseKey = cache[key];
-            } else {
+            if (!camelCaseKey) {
                 camelCaseKey = key.replace(/([\-_]\w)/g, function (matches) {
                     return matches[1].toUpperCase();
                 });
                 camelCaseKey = camelCaseKey[0].toLowerCase() + camelCaseKey.slice(1);
-                cache[key] = camelCaseKey;
+                cache.set(key, camelCaseKey);
             }
 
             if (isObject(val)) {
-                val = camelCaseKeys(val, cache);
+                val = camelCaseKeys(val);
             }
 
             parsedObj[camelCaseKey] = val;

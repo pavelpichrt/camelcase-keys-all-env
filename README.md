@@ -4,9 +4,10 @@
 - Works on all environments where at least ES5 is available (IE9+).
 - Works with snake_case, kebab-case (spinal-case) and PascalCase keys
 - Supports Arrays and nested objects
+- Best performing algorithm in most cases (see benchmarks)
 - No dependencies
 - Browser friendly
-    - Tiny in size (<1kB minified)
+    - Tiny in size (~1kB minified)
     - A minified version included (./dist/camelcase-keys.min.js)
 
 ## Usage
@@ -77,6 +78,12 @@ $ npm install --save camelcase-keys-all-env
 ```
 
 ## Scripts
+
+### Benchmark
+```bash
+$ yarn bench
+```
+- Runs a benchmark using one complex and one simple JSON object with comparison to other similar packages.
 
 ### Build
 ```bash

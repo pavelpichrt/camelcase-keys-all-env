@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "59f3578e87cda25d44337a0a",
+    "index": 0,
+    "guid": "f91f8f9b-9d41-4ab7-9f95-453549e34474",
+    "is_active": true,
+    "balance": "$3,939.73",
+    "picture": "http://placehold.it/32x32",
+    "age": 24,
+    "eye_color": "green",
+    "name": "Georgina Lucas",
+    "gender": "female",
+    "company": "ENTHAZE",
+    "email": "georginalucas@enthaze.com",
+    "_phone": "+1 <ReferenceError: _phone is not defined>",
+    "address": "725 Kimball Street, Retsof, Wisconsin, 9050",
+    "about": "Adipisicing incididunt occaecat ad eu elit occaecat. Esse sunt voluptate ipsum deserunt labore laborum occaecat in non est duis exercitation nulla. Voluptate irure adipisicing quis aliqua incididunt sunt ad. Ipsum et id duis id mollit irure reprehenderit ipsum velit. Nisi sunt dolor nisi anim reprehenderit cupidatat ea velit non cillum consectetur est. Esse laborum sint do dolore occaecat duis.\r\n",
+    "registered": "2017-09-17T09:45:01 -01:00",
+    "Latitude": 29.046156,
+    "longitude": -104.727837,
+    "tags-all_selected": [
+      "culpa",
+      "sit",
+      "aute",
+      "eiusmod",
+      "sit",
+      "commodo",
+      "enim"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Josie Herrera"
+      },
+      {
+        "id": 1,
+        "name": "Carissa Young"
+      },
+      {
+        "id": 2,
+        "name": "Gracie Mckee"
+      }
+    ],
+    "greeting": "hello",
+    "favorite_fruit-of_someOne": "banana"
+  }
+]
