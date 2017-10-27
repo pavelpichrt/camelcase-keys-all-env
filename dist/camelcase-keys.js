@@ -16,7 +16,6 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.default = camelCaseKeys;
 
     var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
         return typeof obj;
@@ -28,34 +27,44 @@
         return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj !== null;
     };
 
-    function camelCaseKeys(obj) {
-        if (!isObject(obj)) {
+    var camelCaseKeys = function camelCaseKeys(obj) {
+        var cache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        if (!obj || !isObject(obj)) {
             return obj;
         }
 
         var parsedObj = {};
+        var camelCaseKey = void 0;
 
         if (Array.isArray(obj)) {
             return obj.map(function (item) {
-                return camelCaseKeys(item);
+                return camelCaseKeys(item, cache);
             });
         }
 
-        Object.keys(obj).forEach(function (key) {
-            var camelCaseKey = key.replace(/([\-_]\w)/g, function (matches) {
-                return matches[1].toUpperCase();
-            });
+        for (var key in obj) {
             var val = obj[key];
 
-            camelCaseKey = camelCaseKey[0].toLowerCase() + camelCaseKey.slice(1);
+            if (cache[key]) {
+                camelCaseKey = cache[key];
+            } else {
+                camelCaseKey = key.replace(/([\-_]\w)/g, function (matches) {
+                    return matches[1].toUpperCase();
+                });
+                camelCaseKey = camelCaseKey[0].toLowerCase() + camelCaseKey.slice(1);
+                cache[key] = camelCaseKey;
+            }
 
             if (isObject(val)) {
-                val = camelCaseKeys(val);
+                val = camelCaseKeys(val, cache);
             }
 
             parsedObj[camelCaseKey] = val;
-        });
+        }
 
         return parsedObj;
-    }
+    };
+
+    exports.default = camelCaseKeys;
 });

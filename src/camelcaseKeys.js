@@ -1,8 +1,6 @@
 const isObject = obj => typeof obj === 'object' && obj !== null
 
-let cache = {}
-
-const camelCaseKeys = obj => {
+const camelCaseKeys = (obj, cache = {}) => {
     if (!obj || !isObject(obj)) {
         return obj
     }
@@ -11,7 +9,7 @@ const camelCaseKeys = obj => {
     let camelCaseKey
 
     if (Array.isArray(obj)) {
-        return obj.map(item => camelCaseKeys(item))
+        return obj.map(item => camelCaseKeys(item, cache))
     }
 
     for (const key in obj) {
@@ -26,7 +24,7 @@ const camelCaseKeys = obj => {
         }
 
         if (isObject(val)) {
-            val = camelCaseKeys(val)
+            val = camelCaseKeys(val, cache)
         }
 
         parsedObj[camelCaseKey] = val
